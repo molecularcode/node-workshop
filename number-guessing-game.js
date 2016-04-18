@@ -12,6 +12,7 @@ prompt.start();
 
 var guessTheNum = Math.floor(Math.random()*(100)+1);
 var i = 4;
+var guesses = [];
 
 function promptNumber() {
     return prompt.get(["number"], function(err, result) {
@@ -19,16 +20,18 @@ function promptNumber() {
             if(Number(result.number) !== guessTheNum){
                 if (Number(result.number) > guessTheNum) {
                     console.log("You entered: " + result.number + ", this is too high, please try a lower number!");
+                    guesses.push(result.number);
                 }
                 else {
                     console.log("You entered: " + result.number + ", this is too low, please try a higher number!");
+                    guesses.push(result.number);
                 }
                 if (i > 1) {
                     i--;
                     promptNumber();
                 }
                 else {
-                    console.log("Sorry, you took more than 4 turns to guess the answer, better luck next time");
+                    console.log("Sorry, you took more than 4 turns to guess the answer, better luck next time. You guessed " + guesses + ". The correct answer was " + guessTheNum + ".");
                 }
             } else {
                 console.log("Congrats, you guessed the right number!");
