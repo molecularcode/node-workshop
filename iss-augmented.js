@@ -56,7 +56,7 @@ var myLon;
 
 request(url, function(err, result) {
     var resultObject = JSON.parse(result.body);
-    issLat = Number(resultObject.iss_position.latitude.toFixed(2));
+    issLat = resultObject.iss_position.latitude.toFixed(2);
     issLon = resultObject.iss_position.longitude.toFixed(2);   
     var theDate = new Date(resultObject.timestamp * 1000);
     var timeDate = theDate.toGMTString();
@@ -85,7 +85,5 @@ prompt.get(['locationCity'], function (err, result) {
         myLat = Number(myLat);
         myLat = Number(myLat);
         console.log(distance(issLat, issLon, myLat, myLon));
-        //console.log(typeof issLat);
-        //console.log(distance(1, 2, 3, 4));
     });
 });
