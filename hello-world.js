@@ -1,4 +1,4 @@
-// First program
+// Ex1 - First program
 // -----------------------------------------
 
 // Create a file called hello-world.js . In it, write a simple node program that outputs "Hello World!" to the console.
