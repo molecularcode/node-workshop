@@ -45,10 +45,10 @@ function findRandomWord(randomWord) {
 }
 
 function promptLetter() {
-    for (var i = 0; wrongAnswers.length < hangman.length; i++) {
-        while(chosenWordLetterArray.join('') !== guesses.join('')) {
-            return prompt.get(["letter"], function(err, result) {
-                if (typeof result.letter === "string" && result.letter.match(/[a-z]/i) && result.letter.length === 1) {
+    for (var i = 0; wrongAnswers.length < hangman.length; i++) { // keep going until they run out of guesses i.e. all the hangman lines have printed
+        while(chosenWordLetterArray.join('') !== guesses.join('')) { // keep going whilst they've not guessed the correct answer
+            return prompt.get(["letter"], function(err, result) { // prompt the user for a letter
+                if (typeof result.letter === "string" && result.letter.match(/[a-z]/i) && result.letter.length === 1) { // in the letter is in the word, push it to the guesses array and replace the _ placeholder
                     if (chosenWordLetterArray.indexOf(result.letter) !== -1) {
                         chosenWordLetterArray.forEach(function(letter, int) {
                             if (letter === result.letter) {
@@ -56,12 +56,13 @@ function promptLetter() {
                             }
                         });
                     }
-                    else {
+                    else { // if the letter is not in the array, keep track of it in the wrong answers array
                         console.log("try again");
                         wrongAnswers.push(result.letter);
                         hangMan = hangMan.concat(hangman[x])+"\n";
                         x++;
                     }
+                    // do stuff after the user has entered a letter and it's been evaluated as either right or wrong
                     console.log(hangMan);
                     console.log(guesses);
                     console.log("You've entered " + wrongAnswers.length + " wrong answers");
